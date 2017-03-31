@@ -1,0 +1,51 @@
+application: suntech-kalian
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+# [START handlers]
+
+handlers:
+  # This is for full static only
+  # - url: /(.*)
+  #   static_files: www/\1
+  #   upload: www/(.*)
+  
+  # - url: /favicon\.ico
+  # static_files: favicon.ico
+  # upload: favicon\.ico
+  
+  # For landing only
+  - url: /
+    static_files: dist/index.html
+    upload: dist/index.html
+
+  # For static assets
+  - url: /static
+    static_dir: dist/static
+
+  # For API routes 
+  - url: /api/.* 
+    script: main.app
+
+skip_files:
+  - ^(.*/)?#.*#
+  - ^(.*/)?.*~
+  - ^(.*/)?.*\.py[co]
+  - ^(.*/)?\.git/*
+  - ^(.*/)?\.gitignore$
+  - ^(.*/)?\package.json$
+  - ^(.*/)?.*\.js.map
+  - ^(.*/)?.*\.css.map
+  # - ^(.*/)?\index.html$
+  - ^(index.html)
+  - ^(.*/)?\yarn.lock$
+  - ^(node_modules/.*)
+  - ^(build/.*)
+  - ^(config/.*)
+  - ^(src/.*)
+  - ^(static/.*)
+
+
+# [END handlers]
